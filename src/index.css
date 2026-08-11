@@ -1,0 +1,573 @@
+/* ---------------------------------------------------------------------
+   Design tokens — reference palette from the dataviz skill, dark-first
+   (Grafana-like) with a light mode available via [data-theme="light"].
+   --------------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface-1: #1a1a19;
+  --surface-2: #202020;
+  --text-primary: #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted: #898781;
+  --gridline: #2c2c2a;
+  --baseline: #383835;
+  --border: rgba(255, 255, 255, 0.1);
+
+  --series-1: #3987e5; /* blue     — calories   */
+  --series-2: #d95926; /* orange   — protein    */
+  --series-3: #199e70; /* aqua     — carbs      */
+  --series-4: #c98500; /* yellow   — fat        */
+  --series-5: #9085e9; /* violet   — weight     */
+
+  --status-good: #0ca30c;
+  --status-warning: #fab219;
+  --status-serious: #ec835a;
+  --status-critical: #d03b3b;
+  --success-text: #0ca30c;
+
+  --radius-panel: 10px;
+  --radius-control: 6px;
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --surface-2: #f3f2ef;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --gridline: #e1e0d9;
+  --baseline: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.1);
+
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #4a3aa7;
+
+  --success-text: #006300;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--series-1);
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------------
+   App shell
+   --------------------------------------------------------------------- */
+.app-shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--surface-1);
+  border-right: 1px solid var(--border);
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px 18px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand-mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, var(--series-1), var(--series-5));
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--radius-control);
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+.nav-link.active {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  box-shadow: inset 2px 0 0 var(--series-1);
+}
+
+.nav-icon {
+  font-size: 15px;
+  width: 18px;
+  text-align: center;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.theme-toggle {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  padding: 8px 10px;
+  font-size: 12.5px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.theme-toggle:hover {
+  color: var(--text-primary);
+}
+
+.main {
+  padding: 22px 28px 40px;
+  min-width: 0;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 650;
+  margin: 0;
+}
+
+.page-subtitle {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin: 4px 0 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ---------------------------------------------------------------------
+   Buttons & form controls
+   --------------------------------------------------------------------- */
+.btn {
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  padding: 8px 14px;
+  border-radius: var(--radius-control);
+  font-size: 13px;
+  font-weight: 550;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.btn:hover {
+  background: var(--surface-2);
+}
+
+.btn-primary {
+  background: var(--series-1);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+.btn-danger {
+  color: var(--status-critical);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+}
+
+.btn-sm {
+  padding: 5px 9px;
+  font-size: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  font-weight: 550;
+}
+
+.field input,
+.field select,
+.field textarea {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  padding: 8px 10px;
+  font-size: 13.5px;
+  color: var(--text-primary);
+  min-width: 0;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--series-1);
+  outline-offset: -1px;
+}
+
+.field-hint {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px 18px;
+}
+
+/* ---------------------------------------------------------------------
+   Panels (Grafana-style cards)
+   --------------------------------------------------------------------- */
+.panel {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.panel-title {
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.grid-stats {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-meters {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-2col {
+  grid-template-columns: 1.3fr 1fr;
+}
+
+.grid-full {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 1100px) {
+  .grid-stats,
+  .grid-meters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand,
+  .sidebar-footer {
+    display: none;
+  }
+  .grid-stats,
+  .grid-meters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .main {
+    padding: 16px;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Stat tile
+   --------------------------------------------------------------------- */
+.stat-tile-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 550;
+}
+
+.stat-tile-value {
+  font-size: 30px;
+  font-weight: 650;
+  margin-top: 6px;
+  font-variant-numeric: proportional-nums;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.stat-tile-unit {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stat-tile-delta {
+  font-size: 12.5px;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.delta-good {
+  color: var(--success-text);
+}
+
+.delta-bad {
+  color: var(--status-critical);
+}
+
+.delta-neutral {
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------------
+   Meter
+   --------------------------------------------------------------------- */
+.meter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.meter-name {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  font-weight: 550;
+}
+
+.meter-values {
+  font-size: 13px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.meter-values .of-goal {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.meter-track {
+  height: 10px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.25s ease;
+}
+
+.meter-pct {
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------------
+   Tables
+   --------------------------------------------------------------------- */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.data-table th {
+  text-align: left;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--gridline);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.data-table tbody tr:hover {
+  background: var(--surface-2);
+}
+
+.data-table .col-name {
+  white-space: normal;
+  min-width: 160px;
+  font-variant-numeric: proportional-nums;
+}
+
+.meal-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.row-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.empty-state {
+  padding: 30px 10px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* ---------------------------------------------------------------------
+   Misc
+   --------------------------------------------------------------------- */
+.card-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.legend-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+.legend-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 22px 0;
+}
+
+.settings-form .panel {
+  margin-bottom: 16px;
+}
+
+.danger-zone {
+  border-color: rgba(208, 59, 59, 0.35);
+}

@@ -11,7 +11,6 @@ export default function Settings() {
     clearAllWorkouts,
     sleepEntries,
     clearAllSleepEntries,
-    loadSampleData,
   } = useData();
   const [form, setForm] = useState(settings);
   const [savedAt, setSavedAt] = useState(null);
@@ -46,13 +45,6 @@ export default function Settings() {
       clearAllEntries();
       clearAllWorkouts();
       clearAllSleepEntries();
-    }
-  }
-
-  function handleSample() {
-    const isEmpty = entries.length === 0 && workouts.length === 0 && sleepEntries.length === 0;
-    if (isEmpty || window.confirm("Replace your current log with 14 days of sample data?")) {
-      loadSampleData();
     }
   }
 
@@ -186,13 +178,10 @@ export default function Settings() {
           <span>Data</span>
         </p>
         <p className="page-subtitle" style={{ marginBottom: 14 }}>
-          Everything is stored locally in this browser ({entries.length} meals, {workouts.length} exercise sets,{" "}
-          {sleepEntries.length} nights of sleep logged) — nothing is sent to a server.
+          Everything is stored in your Supabase project ({entries.length} meals, {workouts.length} exercise sets,{" "}
+          {sleepEntries.length} nights of sleep logged) — visible only to you, via row-level security.
         </p>
         <div className="card-row">
-          <button type="button" className="btn" onClick={handleSample}>
-            Load sample data
-          </button>
           <button type="button" className="btn btn-danger" onClick={handleClear}>
             Clear all entries
           </button>

@@ -13,4 +13,12 @@ export const DEFAULT_SETTINGS = {
   weeklyMinutesGoal: 240,
   sleepGoalHours: 8,
   targetBedtime: "23:00",
+  // Goals-page calculator inputs (src/lib/calorieCalc.js) — remembered so the
+  // calculator doesn't reset every visit.
+  sex: null,
+  age: null,
+  heightCm: null,
+  activityLevel: "moderate",
+  goalType: "maintain",
+  weeklyRateKg: 0.5,
 };

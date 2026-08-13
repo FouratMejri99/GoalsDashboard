@@ -577,6 +577,63 @@ table.data-table {
   margin-bottom: 16px;
 }
 
+/* ---------------------------------------------------------------------
+   Goals calculator
+   --------------------------------------------------------------------- */
+.goal-type-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.goal-type-btn {
+  flex: 1 1 160px;
+}
+
+.macro-ratio-bar {
+  display: flex;
+  height: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.macro-ratio-bar span {
+  height: 100%;
+  transition: width 0.25s ease;
+}
+
+.macro-breakdown-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.macro-figure {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.macro-figure .legend-swatch {
+  margin-top: 5px;
+  width: 10px;
+  height: 10px;
+}
+
+.macro-figure-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 550;
+}
+
+.macro-figure-value {
+  font-size: 18px;
+  font-weight: 650;
+  margin-top: 2px;
+}
+
 .danger-zone {
   border-color: rgba(208, 59, 59, 0.35);
 }

@@ -22,6 +22,12 @@ export function settingsFromRow(row) {
     weeklyMinutesGoal: row.weekly_minutes_goal ?? 0,
     sleepGoalHours: row.sleep_goal_hours ?? 0,
     targetBedtime: row.target_bedtime ?? "23:00",
+    sex: row.sex ?? null,
+    age: row.age ?? null,
+    heightCm: row.height_cm ?? null,
+    activityLevel: row.activity_level ?? "moderate",
+    goalType: row.goal_type ?? "maintain",
+    weeklyRateKg: row.weekly_rate_kg ?? 0.5,
   };
 }
 
@@ -39,6 +45,12 @@ export function settingsToRow(settings, userId) {
     weekly_minutes_goal: settings.weeklyMinutesGoal ?? 0,
     sleep_goal_hours: settings.sleepGoalHours ?? 0,
     target_bedtime: settings.targetBedtime ?? "23:00",
+    sex: settings.sex ?? null,
+    age: settings.age ?? null,
+    height_cm: settings.heightCm ?? null,
+    activity_level: settings.activityLevel ?? "moderate",
+    goal_type: settings.goalType ?? "maintain",
+    weekly_rate_kg: settings.weeklyRateKg ?? 0.5,
   };
 }
 

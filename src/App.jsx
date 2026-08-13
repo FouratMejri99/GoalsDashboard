@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Dashboard from "./pages/Dashboard.jsx";
+import Goals from "./pages/Goals.jsx";
 import MealsLog from "./pages/MealsLog.jsx";
 import Workouts from "./pages/Workouts.jsx";
 import Sleep from "./pages/Sleep.jsx";
@@ -14,6 +15,7 @@ import { loadJSON, saveJSON } from "./lib/storage.js";
 
 const NAV_ITEMS = [
   { to: "/", label: "Dashboard", icon: "▦", end: true },
+  { to: "/goals", label: "Goals", icon: "◎" },
   { to: "/meals", label: "Meals", icon: "☰" },
   { to: "/workouts", label: "Workouts", icon: "🏋" },
   { to: "/sleep", label: "Sleep", icon: "☾" },
@@ -94,6 +96,7 @@ function AppShell() {
       <main className="main">
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/goals" element={<Goals />} />
           <Route path="/meals" element={<MealsLog />} />
           <Route path="/workouts" element={<Workouts />} />
           <Route path="/sleep" element={<Sleep />} />

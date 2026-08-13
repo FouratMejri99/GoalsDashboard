@@ -52,8 +52,24 @@ create table if not exists public.settings (
   weekly_minutes_goal numeric not null default 240,
   sleep_goal_hours numeric not null default 8,
   target_bedtime text not null default '23:00',
+  -- Inputs for the Goals-page calorie/macro calculator (src/lib/calorieCalc.js).
+  sex text,
+  age numeric,
+  height_cm numeric,
+  activity_level text not null default 'moderate',
+  goal_type text not null default 'maintain',
+  weekly_rate_kg numeric not null default 0.5,
   updated_at timestamptz not null default now()
 );
+
+-- Re-running this file against a project created before the Goals-page
+-- calculator existed: add the new columns without touching existing rows.
+alter table public.settings add column if not exists sex text;
+alter table public.settings add column if not exists age numeric;
+alter table public.settings add column if not exists height_cm numeric;
+alter table public.settings add column if not exists activity_level text not null default 'moderate';
+alter table public.settings add column if not exists goal_type text not null default 'maintain';
+alter table public.settings add column if not exists weekly_rate_kg numeric not null default 0.5;
 
 alter table public.settings enable row level security;
 
